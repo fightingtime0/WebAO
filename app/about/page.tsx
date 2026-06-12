@@ -30,7 +30,7 @@ export default function AboutPage() {
     <div className="bg-brand-black">
       {/* Full-bleed dark hero */}
       <section className="grain flex min-h-[80svh] items-center justify-center px-5 text-center">
-        <h1 className="font-display text-[clamp(2.75rem,9vw,10rem)] font-light uppercase leading-[0.95] text-brand-white">
+        <h1 className="text-[clamp(2.75rem,9vw,10rem)] font-black uppercase leading-[0.9] tracking-tighter text-brand-white">
           Through Fashion,
           <br />
           We Rise.
@@ -40,7 +40,7 @@ export default function AboutPage() {
       {/* Origin */}
       <section className="border-t border-brand-border bg-brand-surface py-20 md:py-28">
         <div className="mx-auto max-w-2xl px-5 text-center md:px-8">
-          <p className="text-[10px] uppercase tracking-widest text-brand-gold">The Origin</p>
+          <p className="text-[10px] uppercase tracking-widest text-brand-gray">The Origin</p>
           <p className="mt-8 text-sm leading-loose text-brand-gray md:text-base">
             ANGELS OATH is a small streetwear brand from Tapos, Depok &mdash; launched in January
             2025 with a single hoodie and a conviction. No investors, no shortcuts. Just a belief
@@ -59,7 +59,7 @@ export default function AboutPage() {
           <div className="grid gap-px bg-brand-border sm:grid-cols-2 lg:grid-cols-4">
             {pillars.map((pillar) => (
               <div key={pillar.title} className="bg-brand-black p-8 md:p-10">
-                <h2 className="font-display text-3xl font-light uppercase text-brand-gold">
+                <h2 className="text-3xl font-bold uppercase tracking-tight text-brand-white">
                   {pillar.title}
                 </h2>
                 <p className="mt-4 text-sm leading-relaxed text-brand-gray">{pillar.body}</p>
@@ -71,14 +71,14 @@ export default function AboutPage() {
 
       {/* Instagram CTA */}
       <section className="grain border-t border-brand-border py-20 text-center md:py-28">
-        <p className="font-display text-3xl font-light text-brand-white md:text-5xl">
+        <p className="text-3xl font-bold uppercase tracking-tight text-brand-white md:text-5xl">
           Follow the journey.
         </p>
         <a
           href="https://www.instagram.com/angelsoath"
           target="_blank"
           rel="noopener noreferrer"
-          className="relative z-10 mt-10 inline-block border border-brand-white px-10 py-4 text-xs font-medium uppercase tracking-widest text-brand-white transition-colors hover:border-brand-gold hover:text-brand-gold"
+          className="relative z-10 mt-10 inline-block border border-brand-white px-10 py-4 text-xs font-medium uppercase tracking-widest text-brand-white transition-opacity hover:opacity-70"
         >
           Instagram &mdash; @angelsoath
         </a>
