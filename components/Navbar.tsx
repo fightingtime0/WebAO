@@ -17,7 +17,7 @@ export default function Navbar() {
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 md:px-8">
         <Link
           href="/"
-          className="text-base font-bold uppercase tracking-widest text-brand-white"
+          className="font-display text-xl font-semibold tracking-wide text-brand-white"
           onClick={() => setOpen(false)}
         >
           ANGELS OATH
@@ -29,7 +29,7 @@ export default function Navbar() {
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="text-xs uppercase tracking-widest text-brand-gray transition-colors hover:text-brand-white"
+                className="text-xs uppercase tracking-widest text-brand-gray transition-colors hover:text-brand-gold"
               >
                 {link.label}
               </Link>
@@ -69,7 +69,7 @@ export default function Navbar() {
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="text-4xl font-black uppercase tracking-tighter text-brand-white transition-opacity hover:opacity-70"
+                className="font-display text-4xl font-light uppercase tracking-widest text-brand-white transition-colors hover:text-brand-gold"
                 onClick={() => setOpen(false)}
               >
                 {link.label}

@@ -16,7 +16,7 @@ export default function Hero() {
   return (
     <section className="grain flex min-h-[100svh] flex-col items-center justify-center bg-brand-black px-5 text-center">
       <motion.h1
-        className="hero-headline text-brand-white"
+        className="hero-headline font-display text-brand-white"
         variants={fadeUp}
         initial="hidden"
         animate="visible"
@@ -26,7 +26,7 @@ export default function Hero() {
       </motion.h1>
 
       <motion.p
-        className="mt-6 text-xs font-light lowercase tracking-widest text-brand-gray md:text-sm"
+        className="mt-6 text-xs uppercase tracking-widest text-brand-gray md:text-sm"
         variants={fadeUp}
         initial="hidden"
         animate="visible"
@@ -44,13 +44,13 @@ export default function Hero() {
       >
         <Link
           href="/shop"
-          className="bg-brand-white px-10 py-4 text-xs font-medium uppercase tracking-widest text-brand-black transition-opacity hover:opacity-85"
+          className="bg-brand-gold px-10 py-4 text-xs font-medium uppercase tracking-widest text-brand-black transition-opacity hover:opacity-85"
         >
           Shop Now
         </Link>
         <Link
           href="/about"
-          className="border border-brand-white px-10 py-4 text-xs font-medium uppercase tracking-widest text-brand-white transition-opacity hover:opacity-70"
+          className="border border-brand-white px-10 py-4 text-xs font-medium uppercase tracking-widest text-brand-white transition-colors hover:border-brand-gold hover:text-brand-gold"
         >
           Our Story
         </Link>

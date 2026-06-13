@@ -26,10 +26,10 @@ export default function ProductSection() {
 
           {/* Product details */}
           <div>
-            <h2 className="text-4xl font-bold uppercase tracking-tight text-brand-white md:text-6xl">
+            <h2 className="font-display text-4xl font-light text-brand-white md:text-6xl">
               {heroProduct.name}
             </h2>
-            <p className="mt-4 text-lg font-bold tracking-wide text-brand-white">
+            <p className="mt-4 text-lg tracking-wide text-brand-gold">
               {heroProduct.priceFormatted}
             </p>
             <p className="mt-6 max-w-md text-sm leading-relaxed text-brand-gray">
@@ -47,8 +47,8 @@ export default function ProductSection() {
                   aria-pressed={selectedSize === size}
                   className={`h-12 w-12 border text-xs uppercase tracking-widest transition-colors ${
                     selectedSize === size
-                      ? 'border-brand-white bg-brand-white text-brand-black'
-                      : 'border-brand-white bg-transparent text-brand-white hover:opacity-70'
+                      ? 'border-brand-gold bg-brand-gold text-brand-black'
+                      : 'border-brand-border text-brand-white hover:border-brand-gold'
                   }`}
                 >
                   {size}
@@ -60,7 +60,7 @@ export default function ProductSection() {
               href={heroProduct.tokopediaUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-10 inline-block w-full bg-brand-white px-10 py-4 text-center text-xs font-medium uppercase tracking-widest text-brand-black transition-opacity hover:opacity-85 sm:w-auto"
+              className="mt-10 inline-block w-full bg-brand-gold px-10 py-4 text-center text-xs font-medium uppercase tracking-widest text-brand-black transition-opacity hover:opacity-85 sm:w-auto"
             >
               Buy on Tokopedia &rarr;
             </a>
@@ -74,7 +74,7 @@ export default function ProductSection() {
           href={heroProduct.tokopediaUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-between bg-brand-white px-5 py-3.5 text-xs font-medium uppercase tracking-widest text-brand-black"
+          className="flex items-center justify-between bg-brand-gold px-5 py-3.5 text-xs font-medium uppercase tracking-widest text-brand-black"
         >
           <span>Buy on Tokopedia</span>
           <span>{heroProduct.priceFormatted}</span>

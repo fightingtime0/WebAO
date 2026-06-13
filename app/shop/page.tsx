@@ -12,7 +12,7 @@ export default function ShopPage() {
   return (
     <div className="grain bg-brand-black">
       <div className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
-        <h1 className="text-6xl font-black uppercase tracking-tighter text-brand-white md:text-8xl">
+        <h1 className="font-display text-6xl font-light uppercase text-brand-white md:text-8xl">
           The Drop
         </h1>
         <p className="mt-4 text-xs uppercase tracking-widest text-brand-gray">
@@ -30,13 +30,13 @@ export default function ShopPage() {
             />
           </div>
           <div className="flex flex-col justify-center p-6 pb-10 md:p-12">
-            <p className="text-[10px] uppercase tracking-widest text-brand-gray">
+            <p className="text-[10px] uppercase tracking-widest text-brand-gold">
               First Drop &mdash; Jan 25, 2025
             </p>
-            <h2 className="mt-4 text-4xl font-bold uppercase tracking-tight text-brand-white md:text-5xl">
+            <h2 className="mt-4 font-display text-4xl font-light text-brand-white md:text-5xl">
               {heroProduct.name}
             </h2>
-            <p className="mt-3 text-lg font-bold tracking-wide text-brand-white">
+            <p className="mt-3 text-lg tracking-wide text-brand-gold">
               {heroProduct.priceFormatted}
             </p>
             <p className="mt-6 max-w-md text-sm leading-relaxed text-brand-gray">
@@ -49,7 +49,7 @@ export default function ShopPage() {
               href={heroProduct.tokopediaUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-10 inline-block w-full bg-brand-white px-10 py-4 text-center text-xs font-medium uppercase tracking-widest text-brand-black transition-opacity hover:opacity-85 sm:w-auto"
+              className="mt-10 inline-block w-full bg-brand-gold px-10 py-4 text-center text-xs font-medium uppercase tracking-widest text-brand-black transition-opacity hover:opacity-85 sm:w-auto"
             >
               Buy on Tokopedia &rarr;
             </a>
@@ -66,7 +66,7 @@ export default function ShopPage() {
               {/* Blurred ghost silhouette */}
               <span
                 aria-hidden="true"
-                className="text-7xl font-black uppercase text-brand-darkgray blur-sm select-none"
+                className="font-display text-7xl font-light uppercase text-brand-border blur-sm select-none"
               >
                 AO
               </span>

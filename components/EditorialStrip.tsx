@@ -8,10 +8,10 @@ export default function EditorialStrip() {
           'radial-gradient(ellipse at 30% 20%, #2a2a2a 0%, #141414 45%, #080808 100%)',
       }}
     >
-      <h2 className="text-6xl font-black uppercase leading-none tracking-tighter text-brand-white md:text-9xl">
+      <h2 className="font-display text-6xl font-light uppercase leading-none text-brand-white md:text-9xl">
         First Ever Drop
       </h2>
-      <p className="mt-6 text-xs uppercase tracking-widest text-brand-white md:text-sm">
+      <p className="mt-6 text-xs uppercase tracking-widest text-brand-gold md:text-sm">
         Jan 25, 2025
       </p>
     </section>

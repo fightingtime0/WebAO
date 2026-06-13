@@ -19,7 +19,7 @@ export default function Footer() {
       <div className="mx-auto grid max-w-7xl gap-12 px-5 py-16 md:grid-cols-3 md:gap-8 md:px-8">
         {/* Wordmark */}
         <div>
-          <p className="text-3xl font-bold uppercase tracking-widest text-brand-white">ANGELS OATH</p>
+          <p className="font-display text-3xl font-semibold text-brand-white">ANGELS OATH</p>
           <p className="mt-3 text-xs uppercase tracking-widest text-brand-gray">
             through fashion, we rise.
           </p>
@@ -33,7 +33,7 @@ export default function Footer() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="text-xs uppercase tracking-widest text-brand-white transition-colors hover:text-brand-white"
+                  className="text-xs uppercase tracking-widest text-brand-white transition-colors hover:text-brand-gold"
                 >
                   {link.label}
                 </Link>
@@ -52,7 +52,7 @@ export default function Footer() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs uppercase tracking-widest text-brand-white transition-colors hover:text-brand-white"
+                  className="text-xs uppercase tracking-widest text-brand-white transition-colors hover:text-brand-gold"
                 >
                   {link.label}
                 </a>
