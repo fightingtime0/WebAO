@@ -1,59 +1,74 @@
 'use client';
 
-import Link from 'next/link';
 import { motion, type Variants } from 'framer-motion';
 
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 28 },
+  hidden: { opacity: 0, y: 24 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, delay: 0.15 * i, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.8, delay: 0.25 * i, ease: [0.22, 1, 0.36, 1] },
   }),
 };
 
 export default function Hero() {
   return (
-    <section className="grain flex min-h-[100svh] flex-col items-center justify-center bg-brand-black px-5 text-center">
-      <motion.h1
-        className="hero-headline font-display text-brand-white"
-        variants={fadeUp}
-        initial="hidden"
-        animate="visible"
-        custom={0}
-      >
-        ANGELS OATH
-      </motion.h1>
+    <section className="grain relative flex min-h-[100svh] flex-col items-center justify-center bg-dark px-6 text-center">
+      <div className="relative z-10 flex flex-col items-center">
+        {/* Location / est. label */}
+        <motion.p
+          className="text-[10px] uppercase tracking-[0.25em] text-gray md:text-xs"
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={0}
+        >
+          DEPOK, INDONESIA — EST. 2025
+        </motion.p>
 
-      <motion.p
-        className="mt-6 text-xs uppercase tracking-widest text-brand-gray md:text-sm"
-        variants={fadeUp}
-        initial="hidden"
-        animate="visible"
-        custom={1}
-      >
-        through fashion, we rise.
-      </motion.p>
+        {/* Wordmark */}
+        <motion.h1
+          className="mt-8 font-display leading-[0.9] text-white"
+          style={{ fontSize: 'clamp(5rem, 13vw, 15rem)', letterSpacing: '0.02em' }}
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={1}
+        >
+          ANGELS OATH
+        </motion.h1>
 
+        {/* Thin rule */}
+        <motion.hr
+          className="mt-8 w-full max-w-xs border-t border-white"
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={2}
+        />
+
+        {/* Tagline */}
+        <motion.p
+          className="mt-8 text-sm font-light italic text-gray"
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={3}
+        >
+          through fashion, we rise.
+        </motion.p>
+      </div>
+
+      {/* Scroll indicator */}
       <motion.div
-        className="mt-12 flex flex-col gap-4 sm:flex-row"
+        className="absolute bottom-10 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-3"
         variants={fadeUp}
         initial="hidden"
         animate="visible"
-        custom={2}
+        custom={4}
       >
-        <Link
-          href="/shop"
-          className="bg-brand-gold px-10 py-4 text-xs font-medium uppercase tracking-widest text-brand-black transition-opacity hover:opacity-85"
-        >
-          Shop Now
-        </Link>
-        <Link
-          href="/about"
-          className="border border-brand-white px-10 py-4 text-xs font-medium uppercase tracking-widest text-brand-white transition-colors hover:border-brand-gold hover:text-brand-gold"
-        >
-          Our Story
-        </Link>
+        <span className="text-[10px] uppercase tracking-[0.25em] text-gray">SCROLL</span>
+        <span className="block h-10 w-px bg-gray" />
       </motion.div>
     </section>
   );

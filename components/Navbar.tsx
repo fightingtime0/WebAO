@@ -1,86 +1,103 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
 
-const links = [
-  { href: '/', label: 'Home' },
-  { href: '/shop', label: 'Shop' },
-  { href: '/about', label: 'About' },
+const LINKS = [
+  { label: 'HOME', href: '/' },
+  { label: 'SHOP', href: '/shop' },
+  { label: 'ABOUT', href: '/about' },
 ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
+  // Lock body scroll while the mobile overlay is open.
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [open]);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-brand-border bg-brand-black/95 backdrop-blur-sm">
-      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 md:px-8">
-        <Link
-          href="/"
-          className="font-display text-xl font-semibold tracking-wide text-brand-white"
-          onClick={() => setOpen(false)}
-        >
-          ANGELS OATH
-        </Link>
+    <>
+      {/* Navbar stays white on every page, including over dark sections. */}
+      <header className="sticky top-0 z-50 h-16 w-full border-b border-border bg-white">
+        <nav className="mx-auto flex h-full max-w-7xl items-center justify-between px-6">
+          <Link
+            href="/"
+            className="font-display text-xl tracking-wide text-dark"
+            aria-label="ANGELS OATH — home"
+          >
+            ANGELS OATH
+          </Link>
 
-        {/* Desktop nav */}
-        <ul className="hidden items-center gap-10 md:flex">
-          {links.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                className="text-xs uppercase tracking-widest text-brand-gray transition-colors hover:text-brand-gold"
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+          {/* Desktop links */}
+          <ul className="hidden items-center gap-10 md:flex">
+            {LINKS.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="text-xs uppercase tracking-widest text-dark transition-opacity hover:opacity-50"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
 
-        {/* Mobile hamburger */}
-        <button
-          type="button"
-          aria-label={open ? 'Close menu' : 'Open menu'}
-          aria-expanded={open}
-          className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
-          onClick={() => setOpen((v) => !v)}
-        >
-          <span
-            className={`block h-px w-6 bg-brand-white transition-transform duration-300 ${
-              open ? 'translate-y-[3.5px] rotate-45' : ''
-            }`}
-          />
-          <span
-            className={`block h-px w-6 bg-brand-white transition-transform duration-300 ${
-              open ? '-translate-y-[3.5px] -rotate-45' : ''
-            }`}
-          />
-        </button>
-      </nav>
+          {/* Mobile hamburger */}
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            className="flex flex-col gap-[5px] md:hidden"
+            aria-label="Open menu"
+          >
+            <span className="block h-[1.5px] w-6 bg-dark" />
+            <span className="block h-[1.5px] w-6 bg-dark" />
+            <span className="block h-[1.5px] w-6 bg-dark" />
+          </button>
+        </nav>
+      </header>
 
-      {/* Mobile full-screen overlay menu */}
-      <div
-        className={`fixed inset-0 top-16 z-40 flex flex-col bg-brand-black transition-opacity duration-300 md:hidden ${
-          open ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
-        }`}
-      >
-        <ul className="flex flex-1 flex-col items-center justify-center gap-10">
-          {links.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                className="font-display text-4xl font-light uppercase tracking-widest text-brand-white transition-colors hover:text-brand-gold"
-                onClick={() => setOpen(false)}
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-        <p className="pb-12 text-center text-[10px] uppercase tracking-widest text-brand-gray">
-          through fashion, we rise.
-        </p>
-      </div>
-    </header>
+      {/* Mobile full-screen overlay */}
+      {open && (
+        <div className="fixed inset-0 z-[60] flex flex-col bg-white md:hidden">
+          <div className="flex h-16 items-center justify-between border-b border-border px-6">
+            <span className="font-display text-xl tracking-wide text-dark">
+              ANGELS OATH
+            </span>
+            <button
+              type="button"
+              onClick={() => setOpen(false)}
+              className="text-3xl leading-none text-dark"
+              aria-label="Close menu"
+            >
+              &times;
+            </button>
+          </div>
+
+          <div className="flex flex-1 flex-col items-center justify-center gap-14">
+            <span className="font-display text-6xl tracking-wide text-dark">
+              ANGELS OATH
+            </span>
+            <ul className="flex flex-col items-center gap-9">
+              {LINKS.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className="text-lg uppercase tracking-widest text-dark"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
+    </>
   );
 }

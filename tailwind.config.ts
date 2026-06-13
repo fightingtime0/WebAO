@@ -8,18 +8,22 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        brand: {
-          black: '#080808',
-          surface: '#0f0f0f',
-          border: '#1c1c1c',
-          gold: '#c8a96e',
-          white: '#f2efe9',
-          gray: '#6b6b6b',
-        },
+        // Strictly monochrome — black, white, grey. Nothing else.
+        bg: '#ffffff',
+        surface: '#f5f5f5',
+        dark: '#0a0a0a',
+        border: '#e8e8e8',
+        gray: '#999999',
+        darkgray: '#444444',
+        black: '#0a0a0a',
+        white: '#ffffff',
       },
       fontFamily: {
-        display: ['var(--font-cormorant)', 'serif'],
+        display: ['var(--font-bebas)', 'sans-serif'],
         sans: ['var(--font-inter)', 'sans-serif'],
+      },
+      maxWidth: {
+        '7xl': '80rem',
       },
     },
   },

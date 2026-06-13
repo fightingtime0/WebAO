@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 html {
@@ -11,14 +11,16 @@ html {
 }
 
 body {
-  background-color: #080808;
-  color: #f2efe9;
+  background-color: #ffffff;
+  color: #0a0a0a;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 /* ---------------------------------------------------------------------------
-   .grain — film grain overlay for dark hero sections
-   SVG fractal noise filter rendered as a pseudo-element covering the section.
+   .grain — film grain overlay. Applied ONLY on dark sections (hero, footer,
+   editorial strip). SVG fractal noise rendered as a pseudo-element, opacity
+   0.035 so it reads as texture, never pattern.
 --------------------------------------------------------------------------- */
 .grain {
   position: relative;
@@ -32,13 +34,13 @@ body {
   z-index: 1;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-repeat: repeat;
-  opacity: 0.04;
+  opacity: 0.035;
   pointer-events: none;
 }
 
 /* ---------------------------------------------------------------------------
-   .marquee — pure CSS ticker. Content is rendered twice inside .marquee-track
-   and translated -50% for a seamless infinite loop. No JavaScript.
+   .marquee — pure CSS ticker, no JS. The track holds the text twice and is
+   translated -50% for a seamless loop. Two rows run opposite directions.
 --------------------------------------------------------------------------- */
 .marquee {
   overflow: hidden;
@@ -48,28 +50,30 @@ body {
 .marquee-track {
   display: inline-flex;
   white-space: nowrap;
-  animation: marquee 28s linear infinite;
   will-change: transform;
 }
 
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+.marquee-track--left {
+  animation: marquee-left 40s linear infinite;
+}
+
+.marquee-track--right {
+  animation: marquee-right 40s linear infinite;
+}
+
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .marquee-track {
+  .marquee-track--left,
+  .marquee-track--right {
     animation: none;
   }
-}
-
-/* Hero headline clamp — used on Home hero + About hero */
-.hero-headline {
-  font-size: clamp(4rem, 10vw, 12rem);
-  font-weight: 300;
-  line-height: 0.95;
 }

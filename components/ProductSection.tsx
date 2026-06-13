@@ -1,85 +1,112 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { heroProduct } from '@/data/product';
 
-export default function ProductSection() {
+interface ProductSectionProps {
+  /** Show the mobile sticky buy bar (home only — appears after hero scrolls out). */
+  stickyBar?: boolean;
+  /** Optional eyebrow label above the product name. */
+  label?: string;
+}
+
+export default function ProductSection({
+  stickyBar = false,
+  label = 'DEBUT COLLECTION — 001',
+}: ProductSectionProps) {
   const [selectedSize, setSelectedSize] = useState<string>('M');
+  const [showBar, setShowBar] = useState(false);
+
+  // Reveal the mobile sticky bar once the hero (~one viewport) has scrolled past.
+  useEffect(() => {
+    if (!stickyBar) return;
+    const onScroll = () => setShowBar(window.scrollY > window.innerHeight * 0.8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [stickyBar]);
 
   return (
-    <section className="bg-brand-black py-20 md:py-32">
-      <div className="mx-auto max-w-7xl px-5 md:px-8">
-        <p className="mb-12 text-center text-xs uppercase tracking-widest text-brand-gray md:mb-20">
-          The Hoodie
-        </p>
+    <section className="bg-white py-20 md:py-32">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 md:grid-cols-5 md:gap-16">
+        {/* LEFT — Product image (60%), full bleed, no border/shadow/radius */}
+        <div className="md:col-span-3">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={heroProduct.images.back}
+            alt={`${heroProduct.name} — back view with script logo`}
+            className="h-full max-h-[80vh] w-full object-contain md:object-cover"
+          />
+        </div>
 
-        <div className="grid items-center gap-10 md:grid-cols-2 md:gap-16">
-          {/* Product image — white background, dark gray rectangle fallback */}
-          <div className="flex aspect-[4/5] items-center justify-center overflow-hidden bg-brand-white">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={heroProduct.images.back}
-              alt={`${heroProduct.name} — back view with script logo`}
-              className="h-full w-full bg-[#2a2a2a] object-cover"
-            />
+        {/* RIGHT — Product details (40%) */}
+        <div className="flex flex-col justify-center md:col-span-2 md:pl-4">
+          <p className="text-[10px] uppercase tracking-[0.25em] text-gray">{label}</p>
+
+          <h2 className="mt-5 font-display text-6xl leading-none text-dark">
+            {heroProduct.name}
+          </h2>
+
+          <hr className="mt-6 border-t border-dark" />
+
+          <p className="mt-6 text-lg font-medium text-dark">{heroProduct.priceFormatted}</p>
+
+          <p className="mt-6 text-sm font-light leading-[1.8] text-gray">
+            {heroProduct.description}
+          </p>
+
+          {/* Size selector — sharp corners, black/white inversion on select */}
+          <div className="mt-10 flex gap-3">
+            {heroProduct.sizes.map((size) => (
+              <button
+                key={size}
+                type="button"
+                onClick={() => setSelectedSize(size)}
+                aria-pressed={selectedSize === size}
+                className={`h-12 w-12 border text-xs uppercase tracking-wide transition-colors ${
+                  selectedSize === size
+                    ? 'border-dark bg-dark text-white'
+                    : 'border-dark bg-white text-dark hover:bg-surface'
+                }`}
+              >
+                {size}
+              </button>
+            ))}
           </div>
 
-          {/* Product details */}
-          <div>
-            <h2 className="font-display text-4xl font-light text-brand-white md:text-6xl">
-              {heroProduct.name}
-            </h2>
-            <p className="mt-4 text-lg tracking-wide text-brand-gold">
-              {heroProduct.priceFormatted}
-            </p>
-            <p className="mt-6 max-w-md text-sm leading-relaxed text-brand-gray">
-              {heroProduct.description}
-            </p>
+          {/* CTA */}
+          <a
+            href={heroProduct.tokopediaUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-10 block w-full border border-dark bg-dark px-10 py-5 text-center text-xs font-medium uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-dark"
+          >
+            SHOP ON TOKOPEDIA →
+          </a>
 
-            {/* Size selector — visual only, purchase happens on Tokopedia */}
-            <p className="mt-10 text-[10px] uppercase tracking-widest text-brand-gray">Size</p>
-            <div className="mt-3 flex gap-3">
-              {heroProduct.sizes.map((size) => (
-                <button
-                  key={size}
-                  type="button"
-                  onClick={() => setSelectedSize(size)}
-                  aria-pressed={selectedSize === size}
-                  className={`h-12 w-12 border text-xs uppercase tracking-widest transition-colors ${
-                    selectedSize === size
-                      ? 'border-brand-gold bg-brand-gold text-brand-black'
-                      : 'border-brand-border text-brand-white hover:border-brand-gold'
-                  }`}
-                >
-                  {size}
-                </button>
-              ))}
-            </div>
-
-            <a
-              href={heroProduct.tokopediaUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-10 inline-block w-full bg-brand-gold px-10 py-4 text-center text-xs font-medium uppercase tracking-widest text-brand-black transition-opacity hover:opacity-85 sm:w-auto"
-            >
-              Buy on Tokopedia &rarr;
-            </a>
-          </div>
+          <p className="mt-4 text-[11px] font-light text-gray">
+            Available exclusively on Tokopedia
+          </p>
         </div>
       </div>
 
-      {/* Mobile sticky buy bar — always visible while scrolling */}
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-brand-border bg-brand-black/95 p-3 backdrop-blur-sm md:hidden">
-        <a
-          href={heroProduct.tokopediaUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-between bg-brand-gold px-5 py-3.5 text-xs font-medium uppercase tracking-widest text-brand-black"
+      {/* Mobile sticky buy bar — home only, after hero scrolls out */}
+      {stickyBar && (
+        <div
+          className={`fixed inset-x-0 bottom-0 z-40 p-3 transition-transform duration-300 md:hidden ${
+            showBar ? 'translate-y-0' : 'translate-y-full'
+          }`}
         >
-          <span>Buy on Tokopedia</span>
-          <span>{heroProduct.priceFormatted}</span>
-        </a>
-      </div>
+          <a
+            href={heroProduct.tokopediaUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full bg-dark px-6 py-4 text-center text-xs font-medium uppercase tracking-wider text-white"
+          >
+            SHOP ON TOKOPEDIA →
+          </a>
+        </div>
+      )}
     </section>
   );
 }

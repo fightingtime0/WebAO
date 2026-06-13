@@ -1,14 +1,19 @@
 export default function Manifesto() {
   return (
-    <section className="bg-brand-surface py-24 md:py-40">
-      <div className="mx-auto max-w-3xl px-5 text-center md:px-8">
-        <blockquote className="font-display text-4xl font-light leading-tight text-brand-white md:text-6xl">
-          &ldquo;Born in Depok. Worn with conviction.&rdquo;
+    <section className="bg-white py-32">
+      <div className="mx-auto max-w-2xl px-6 text-center">
+        <hr className="border-t border-dark" />
+
+        <blockquote className="mt-12 font-display text-5xl leading-tight text-dark">
+          Born in Depok. Worn with conviction.
         </blockquote>
-        <p className="mt-8 text-sm leading-relaxed text-brand-gray md:text-base">
-          ANGELS OATH is more than a clothing brand. It is a statement &mdash; that where you are
-          from does not limit where you are going.
+
+        <p className="mt-8 text-sm font-light leading-[1.8] text-gray">
+          ANGELS OATH is more than a clothing brand. It is a statement — that where
+          you are from does not define where you are going.
         </p>
+
+        <hr className="mt-12 border-t border-dark" />
       </div>
     </section>
   );
