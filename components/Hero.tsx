@@ -28,8 +28,8 @@ export default function Hero() {
 
         {/* Wordmark */}
         <motion.h1
-          className="mt-8 font-display leading-[0.9] text-white"
-          style={{ fontSize: 'clamp(5rem, 13vw, 15rem)', letterSpacing: '0.02em' }}
+          className="mt-8 px-4 font-display leading-[0.9] text-white"
+          style={{ fontSize: 'clamp(6rem, 18vw, 22rem)', letterSpacing: '0.02em' }}
           variants={fadeUp}
           initial="hidden"
           animate="visible"
@@ -40,7 +40,7 @@ export default function Hero() {
 
         {/* Thin rule */}
         <motion.hr
-          className="mt-8 w-full max-w-xs border-t border-white"
+          className="mt-8 w-full max-w-sm border-t border-white"
           variants={fadeUp}
           initial="hidden"
           animate="visible"
@@ -49,7 +49,7 @@ export default function Hero() {
 
         {/* Tagline */}
         <motion.p
-          className="mt-8 text-sm font-light italic text-gray"
+          className="mt-6 text-base font-light italic text-gray"
           variants={fadeUp}
           initial="hidden"
           animate="visible"

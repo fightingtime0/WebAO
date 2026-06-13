@@ -27,7 +27,7 @@ export default function Navbar() {
         <nav className="mx-auto flex h-full max-w-7xl items-center justify-between px-6">
           <Link
             href="/"
-            className="font-display text-xl tracking-wide text-dark"
+            className="font-display text-2xl tracking-wide text-dark"
             aria-label="ANGELS OATH — home"
           >
             ANGELS OATH
